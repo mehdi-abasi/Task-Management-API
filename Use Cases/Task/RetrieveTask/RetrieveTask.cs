@@ -27,6 +27,7 @@ namespace Use_Cases.Task
                 }
                 return OperationResult.SuccessResult(new TaskModel()
                 {
+                    Id = task.ID,
                     Description = task.Description,
                     DueDate = task.DueDate,
                     StartDate = task.StartDate,
@@ -51,6 +52,7 @@ namespace Use_Cases.Task
                 var list = await taskRepository.GetAllAsync();
                 return OperationResult.SuccessResult(list.Select(x => new TaskModel()
                 {
+                    Id = x.ID,
                     Description = x.Description,
                     DueDate = x.DueDate,
                     StartDate = x.StartDate,

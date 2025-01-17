@@ -10,6 +10,6 @@ namespace UseCases
 {
     public interface IUpdateTask
     {
-        Task<OperationResult> UpdateAsync(UpdateTaskModel model);
+        Task<OperationResult> UpdateAsync(TaskModel model);
     }
 }

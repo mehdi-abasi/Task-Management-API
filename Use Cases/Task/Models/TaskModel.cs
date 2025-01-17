@@ -11,7 +11,7 @@ namespace UseCases
         public string Name { get; set; }
         public string Description { get; set; }
     }
-    public class TaskModel:BaseModel
+    public class NewTaskModel:BaseModel
     {
         
         public string Title { get; set; }
@@ -20,7 +20,7 @@ namespace UseCases
         public DateTime DueDate { get; set; }
         public int TblEmploeeID { get; set; }
     }
-    public class UpdateTaskModel:TaskModel
+    public class TaskModel:NewTaskModel
     {
         public int Id { get; set; }
     }

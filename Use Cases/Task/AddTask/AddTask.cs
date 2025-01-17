@@ -18,7 +18,7 @@ namespace UseCases
         {
             taskRepository = _taskRepository;
         }
-        public async Task<OperationResult> AddTaskAsync(TaskModel model)
+        public async Task<OperationResult> AddTaskAsync(NewTaskModel model)
         {
             try
             {

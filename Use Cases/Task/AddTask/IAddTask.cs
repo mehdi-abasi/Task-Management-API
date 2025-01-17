@@ -10,6 +10,6 @@ namespace UseCases
 {
     public interface IAddTask
     {
-         Task<OperationResult> AddTaskAsync(TaskModel model);
+         Task<OperationResult> AddTaskAsync(NewTaskModel model);
     }
 }

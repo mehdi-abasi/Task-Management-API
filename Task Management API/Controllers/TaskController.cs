@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using UseCases;
 
 namespace Task_Management_API.Controllers
 {
+    [Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TaskController : Controller
     {
         private readonly ILogger<TaskController> _logger;
@@ -23,8 +25,8 @@ namespace Task_Management_API.Controllers
 
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Add([FromBody] TaskModel model)
+        [HttpPost("Add")]
+        public async Task<IActionResult> Add([FromBody] NewTaskModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -34,22 +36,23 @@ namespace Task_Management_API.Controllers
             return result.Status ==OperationStatus.Success?CreatedAtAction(nameof(GetById), new { Id = result.Data }, model):HandleErrorResult(result);
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("GetById/{Id}")]
         public async Task<IActionResult> GetById(int Id)
         {
             OperationResult result = await _retrieveTask.GetTaskByIDAsync(Id);
             return result.Status == OperationStatus.Success ? Ok(result.Data): HandleErrorResult(result);
 
         }
-        [HttpGet]
+       
+        [HttpGet("GetList")]
         public async Task<IActionResult> GetList()
         {
             OperationResult result = await _retrieveTask.GetTasksAsync();
             return result.Status == OperationStatus.Success ? Ok(result.Data) : HandleErrorResult(result);
 
         }
-        [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateTaskModel model)
+        [HttpPut("Update")]
+        public async Task<IActionResult> Update([FromBody] TaskModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -59,7 +62,7 @@ namespace Task_Management_API.Controllers
             OperationResult result = await _updateTask.UpdateAsync(model);
             return result.Status == OperationStatus.Success ? Ok() : HandleErrorResult(result);
         }
-        [HttpDelete]
+        [HttpDelete("Delete")]
         public async Task<IActionResult> Delete(int Id)
         {
             OperationResult result = await _deleteTask.DeleteAsync(Id);

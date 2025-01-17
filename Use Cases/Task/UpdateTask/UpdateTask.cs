@@ -16,7 +16,7 @@ namespace UseCases
         {
             taskRepository = _taskRepository;
         }
-        public async Task<OperationResult> UpdateAsync(UpdateTaskModel model)
+        public async Task<OperationResult> UpdateAsync(TaskModel model)
         {
             try
             {

@@ -4,7 +4,7 @@ using UseCases;
 namespace Task_Management_API.Validation
 {
 
-    public class AddTaskValidator:AbstractValidator<TaskModel>
+    public class AddTaskValidator:AbstractValidator<NewTaskModel>
     {
         public AddTaskValidator()
         {
@@ -16,7 +16,7 @@ namespace Task_Management_API.Validation
             RuleFor(task => task.DueDate).NotEmpty().WithMessage("DueDate is required.").GreaterThanOrEqualTo(task => task.StartDate).WithMessage("DueDate should not be before StartDate.");
         }
     }
-    public class UpdateTaskValidator : AbstractValidator<UpdateTaskModel>
+    public class UpdateTaskValidator : AbstractValidator<TaskModel>
     {
         public UpdateTaskValidator()
         {
